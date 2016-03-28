@@ -3,14 +3,10 @@ import java.util.Scanner;
 
 public class Clause implements Comparable<Clause>
 {
+	
 	private ArrayList<Literal> sentence = new ArrayList<Literal>();
 	private int numLiterals;
 	private int parents[] = new int[2];
-	
-	public ArrayList<Literal> getSentance()
-	{
-		return this.sentence;
-	}
 	
 	public Clause(String input)						//Constructor used for when you only have the clause in a String format
 	{
@@ -24,6 +20,11 @@ public class Clause implements Comparable<Clause>
 			sentence.add(new Literal(temp));
 		}
 		tokenizer.close();
+	}
+	
+	public ArrayList<Literal> getSentance()
+	{
+		return this.sentence;
 	}
 	
 	public Clause(ArrayList<Literal> input, int indexOfParA, int indexOfParB)		//Constructor used when you have an ArrayList of Literals(mainly used in the resolveClauses functions)
@@ -42,6 +43,18 @@ public class Clause implements Comparable<Clause>
 			return 0;
 		else
 			return this.numLiterals > arg0.numLiterals ? 1 : -1;
+	}
+	
+	public String toString()
+	{
+		String s = "";
+		
+		for (int i = 0; i < sentence.size(); i++)
+		{
+			s += sentence.get(i).toString() + " ";
+		}
+		
+		return s;
 	}
 
 }

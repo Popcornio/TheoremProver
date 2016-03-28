@@ -22,6 +22,15 @@ public class Prover
 		
 		commandLineCheck(args);
 		clauses = getClauses(args);
+		
+/*	    
+		// Test print for clauses
+		for (int i = 0; i < 5; i++)
+		{
+			Clause s = clauses.get(i);
+			System.out.println(s.toString());
+		}
+*/
 	}
 	
 	// Checks to see if the correct amount of command line arguments were entered

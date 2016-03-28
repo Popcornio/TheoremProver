@@ -1,10 +1,8 @@
 public class Literal 
 {
 
-
 	private String atom = new String();
 	boolean isPositive = true;
-	
 	
 	public Literal(String input)
 	{
@@ -18,4 +16,13 @@ public class Literal
 			atom = input;
 		}
 	}
+	
+	public String toString()
+	{
+		if (isPositive)
+			return atom;
+		else
+			return ("~" + atom);
+	}
+	
 }
