@@ -8,8 +8,8 @@ public class Clause implements Comparable<Clause>
 	private int numLiterals;
 	private int parents[] = new int[2];
 	
-	
-	public Clause(String input)						//Constructor used for when you only have the clause in a String format
+	// Constructor used for when you only have the clause in a String format
+	public Clause(String input)
 	{
 		String temp = new String();
 		Scanner tokenizer = new Scanner(input);
@@ -23,12 +23,8 @@ public class Clause implements Comparable<Clause>
 		tokenizer.close();
 	}
 	
-	public ArrayList<Literal> getSentance()
-	{
-		return this.sentence;
-	}
-	
-	public Clause(ArrayList<Literal> input, int indexOfParA, int indexOfParB)		//Constructor used when you have an ArrayList of Literals(mainly used in the resolveClauses functions)
+	// Constructor used when you have an ArrayList of Literals (mainly used in the resolveClauses functions)
+	public Clause(ArrayList<Literal> input, int indexOfParA, int indexOfParB)
 	{
 		sentence = input;
 		numLiterals = input.size();
@@ -36,8 +32,14 @@ public class Clause implements Comparable<Clause>
 		parents[2] = indexOfParB;
 	}
 	
+	public ArrayList<Literal> getSentance()
+	{
+		return this.sentence;
+	}
+	
 	@Override
-	public int compareTo(Clause arg0) {
+	public int compareTo(Clause arg0)
+	{
 		
 		if(this.numLiterals == arg0.numLiterals)
 			return 0;
@@ -68,33 +70,6 @@ public class Clause implements Comparable<Clause>
 		}
 		
 		return true;
-		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		
 }

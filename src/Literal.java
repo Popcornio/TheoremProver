@@ -23,18 +23,15 @@ public class Literal implements Comparable<Literal>
 			return atom;
 		else
 			return ("~" + atom);
-	
-
-
 	}
 
 	@Override
-	public int compareTo(Literal o) {
+	public int compareTo(Literal o)
+	{
 		if(this.isPositive == o.isPositive && this.atom.equals(o) )
 			return 0;
 		else 
 			return -1;
 	}
-	
 	
 }

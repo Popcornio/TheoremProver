@@ -43,8 +43,7 @@ public class Prover
 		}
 	}
 	
-
-	// Takes the input file and returns the clasues to be stored in 'ArrayList<Clause> clauses'
+	// Takes the input file and returns the clauses to be stored in 'ArrayList<Clause> clauses'
 	public static ArrayList<Clause> getClauses(String args[]) throws FileNotFoundException
 	{
 		String inputFile	= args[0];
@@ -61,7 +60,6 @@ public class Prover
 		
 		return c;
 	}
-
 	
 	private static ArrayList<Clause> resolveClauses(ArrayList<Clause> validClauses)
 	{
@@ -76,10 +74,13 @@ public class Prover
 			
 		}
 		
-		return null;			//return failure
+		return null; // Return failure
 		
 	}
 	
-	private static resolve(ArrayList<Clause> validClauses, )
+	private static resolve(ArrayList<Clause> validClauses)
+	{
+		
+	}
 
 }
