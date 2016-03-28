@@ -33,12 +33,7 @@ public class Prover
 		}
 	}
 	
-<<<<<<< HEAD
-	
-	
-	
-	
-=======
+
 	// Takes the input file and returns the clasues to be stored in 'ArrayList<Clause> clauses'
 	public static ArrayList<Clause> getClauses(String args[]) throws FileNotFoundException
 	{
@@ -56,6 +51,5 @@ public class Prover
 		
 		return c;
 	}
->>>>>>> origin/master
-	
+
 }
