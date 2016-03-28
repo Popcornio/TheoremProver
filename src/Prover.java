@@ -65,13 +65,21 @@ public class Prover
 	
 	private static ArrayList<Clause> resolveClauses(ArrayList<Clause> validClauses)
 	{
-		PriorityQueue<Clause> stateQueue = new PriorityQueue<Clause>();
+		PriorityQueue<Clause> queue = new PriorityQueue<Clause>();
 		
+		queue.addAll(validClauses);	
 		
-
+		while(!queue.isEmpty())
+		{
+			Clause tempClause = queue.poll();
+		
+			
+		}
+		
+		return null;			//return failure
 		
 	}
 	
-	
+	private static resolve(ArrayList<Clause> validClauses, )
 
 }

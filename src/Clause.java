@@ -8,6 +8,7 @@ public class Clause implements Comparable<Clause>
 	private int numLiterals;
 	private int parents[] = new int[2];
 	
+	
 	public Clause(String input)						//Constructor used for when you only have the clause in a String format
 	{
 		String temp = new String();
@@ -33,9 +34,8 @@ public class Clause implements Comparable<Clause>
 		numLiterals = input.size();
 		parents[1] = indexOfParA;
 		parents[2] = indexOfParB;
-		
 	}
-
+	
 	@Override
 	public int compareTo(Clause arg0) {
 		
@@ -57,4 +57,44 @@ public class Clause implements Comparable<Clause>
 		return s;
 	}
 
+	public boolean compareLiterals(Clause input)
+	{
+		if(this.sentence.size() != input.sentence.size())
+			return false;
+		for(int i = 0; i < this.sentence.size(); i++)
+		{
+			if(!input.sentence.contains(this.sentence.get(i)))
+				return false;
+		}
+		
+		return true;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
