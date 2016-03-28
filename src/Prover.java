@@ -6,12 +6,21 @@
  * Class:		Prover.java
 */
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class Prover
 {
 	
-	public static void main (String args[])
+	public static void main (String args[]) throws IOException
 	{
+		ArrayList<Clause> clauses = new ArrayList<Clause>();
+		
 		commandLineCheck(args);
+		clauses = getClauses(args);
 	}
 	
 	// Checks to see if the correct amount of command line arguments were entered
@@ -22,6 +31,24 @@ public class Prover
 			System.err.println("ERROR: Unexpected number of command-line arguments");
 			System.exit(-1);
 		}
+	}
+	
+	// Takes the input file and returns the clasues to be stored in 'ArrayList<Clause> clauses'
+	public static ArrayList<Clause> getClauses(String args[]) throws FileNotFoundException
+	{
+		String inputFile	= args[0];
+		ArrayList<Clause> c = new ArrayList<Clause>();
+		Scanner clauseInput = new Scanner(new File(inputFile));
+		
+		while(clauseInput.hasNextLine())
+		{
+			String currentLine = clauseInput.nextLine();
+			Clause temp = new Clause(currentLine);
+			c.add(temp);
+		}
+		clauseInput.close();
+		
+		return c;
 	}
 	
 }
