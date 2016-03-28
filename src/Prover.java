@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.PriorityQueue;
 import java.util.Scanner;
 
 public class Prover
@@ -51,5 +52,17 @@ public class Prover
 		
 		return c;
 	}
+
+	
+	private static ArrayList<Clause> resolveClauses(ArrayList<Clause> validClauses)
+	{
+		PriorityQueue<Clause> stateQueue = new PriorityQueue<Clause>();
+		
+		
+
+		
+	}
+	
+	
 
 }

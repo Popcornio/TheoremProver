@@ -1,18 +1,18 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Clause 
+public class Clause implements Comparable<Clause>
 {
-	private ArrayList<Literal> sentance = new ArrayList<Literal>();
-	
-	
+	private ArrayList<Literal> sentence = new ArrayList<Literal>();
+	private int numLiterals;
+	private int parents[] = new int[2];
 	
 	public ArrayList<Literal> getSentance()
 	{
-		return this.sentance;
+		return this.sentence;
 	}
-
-	public Clause(String input)
+	
+	public Clause(String input)						//Constructor used for when you only have the clause in a String format
 	{
 		String temp = new String();
 		Scanner tokenizer = new Scanner(input);
@@ -21,9 +21,27 @@ public class Clause
 		while(tokenizer.hasNext())
 		{
 			temp = tokenizer.next();
-			sentance.add(new Literal(temp));
+			sentence.add(new Literal(temp));
 		}
 		tokenizer.close();
+	}
+	
+	public Clause(ArrayList<Literal> input, int indexOfParA, int indexOfParB)		//Constructor used when you have an ArrayList of Literals(mainly used in the resolveClauses functions)
+	{
+		sentence = input;
+		numLiterals = input.size();
+		parents[1] = indexOfParA;
+		parents[2] = indexOfParB;
+		
+	}
+
+	@Override
+	public int compareTo(Clause arg0) {
+		
+		if(this.numLiterals == arg0.numLiterals)
+			return 0;
+		else
+			return this.numLiterals > arg0.numLiterals ? 1 : -1;
 	}
 
 }
