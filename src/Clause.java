@@ -21,6 +21,10 @@ public class Clause implements Comparable<Clause>
 			sentence.add(new Literal(temp));
 		}
 		tokenizer.close();
+		
+		parents[0] = Integer.MIN_VALUE;
+		parents[1] = Integer.MIN_VALUE;
+		
 	}
 	
 	// Constructor used when you have an ArrayList of Literals (mainly used in the resolveClauses functions)
@@ -30,6 +34,11 @@ public class Clause implements Comparable<Clause>
 		numLiterals = input.size();
 		parents[1] = indexOfParA;
 		parents[2] = indexOfParB;
+	}
+	
+	public int[] getParents()
+	{
+		return this.parents;
 	}
 	
 	public ArrayList<Literal> getSentance()

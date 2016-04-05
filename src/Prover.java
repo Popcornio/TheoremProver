@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
@@ -141,5 +142,52 @@ public class Prover
 			}
 		}
 		return null;
+	}
+	
+	public static void done(ArrayList<Clause> validClauses, Clause solution)
+	{
+		ArrayList<Integer> relevantClauses = new ArrayList<>();
+		relevantClauses = grabRelevantClauses(validClauses, solution, relevantClauses);
+		Collections.sort(relevantClauses);
+		
+		for(int i = 0; i < relevantClauses.size(); i++)
+		{
+			int parents[] = {Integer.MIN_VALUE, Integer.MIN_VALUE};
+			parents = validClauses.get(relevantClauses.get(i)).getParents();
+			System.out.println(relevantClauses.get(i) + ". " + validClauses.get(relevantClauses.get(i)).toString() + " {" + parents[0] + ", " + parents[1] + "}");
+		}
+		
+		int parents[] = {Integer.MIN_VALUE, Integer.MIN_VALUE};
+		parents = solution.getParents();
+		
+		System.out.println((relevantClauses.size() + 1) + ". False {" + parents[0] + ", " + parents[1] );
+		
+		System.out.println("Size of final clause set: " + validClauses.size());
+		
+		System.exit(0);
+		
+	}
+	
+	public static ArrayList<Integer> grabRelevantClauses(ArrayList<Clause> validClauses, Clause clause1, ArrayList<Integer> relevantClauses)
+	 {
+	 	int parents[] = {Integer.MIN_VALUE, Integer.MIN_VALUE};
+	 	clause1.getParents();
+	 	 
+	 	if(parents[0] == Integer.MIN_VALUE && parents[1] == Integer.MIN_VALUE)
+	 	{
+	 	return relevantClauses;
+	 	}
+	 	
+	 	 if(!relevantClauses.contains(parents[0]))
+	 		 relevantClauses.add(parents[0]);
+	 	
+	 	relevantClauses = grabRelevantClauses(validClauses, validClauses.get(parents[0]), relevantClauses);
+		
+	 	if(!relevantClauses.contains(parents[1]))
+	 		relevantClauses.add(parents[1]);
+		
+		relevantClauses = grabRelevantClauses(validClauses, validClauses.get(parents[1]), relevantClauses);
+		
+		return relevantClauses;
 	}
 }
