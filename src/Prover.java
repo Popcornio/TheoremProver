@@ -23,7 +23,7 @@ public class Prover
 		
 		commandLineCheck(args);
 		clauses = getClauses(args);
-		
+		prover(clauses);
 /*	    
 		// Test print for clauses
 		for (int i = 0; i < 5; i++)
@@ -71,6 +71,25 @@ public class Prover
 		while(!queue.isEmpty())
 		{
 			Clause tempClause = queue.poll();
+			
+			ArrayList<Clause> temp = new ArrayList<Clause>();
+			
+			temp = resolve(validClauses, tempClause);
+			
+			for(int i = 0; i < temp.size(); i++)
+			{
+				if(temp.get(i).getSentance().isEmpty())
+				{
+					validClauses.addAll(temp);
+					done(validClauses, temp.get(i));
+				}
+				
+				for(int j = 0; j < validClauses.size();j++)
+				{
+					if(!temp.get(i).compareLiterals(validClauses.get(j)))
+						validClauses.add(temp.get(i));	
+				}
+			}
 		
 			
 		}
@@ -85,8 +104,8 @@ public class Prover
 		
 		for(int i = 0; i < validClauses.size(); i++)
 		{
-			if(clause1.compareLiterals(validClauses.get(i)))
-			{
+			//if(clause1.compareLiterals(validClauses.get(i)))
+		//	{
 				if(isResolvable(clause1, validClauses.get(i)))
 				{
 					Clause temp = resolveClauses(validClauses, clause1, validClauses.get(i));
@@ -94,7 +113,7 @@ public class Prover
 					if(temp != null)
 						newClauses.add(temp);
 				}
-			}
+		//	}
 		}
 		return newClauses;
 	}

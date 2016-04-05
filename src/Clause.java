@@ -32,8 +32,8 @@ public class Clause implements Comparable<Clause>
 	{
 		sentence = input;
 		numLiterals = input.size();
-		parents[1] = indexOfParA;
-		parents[2] = indexOfParB;
+		parents[0] = indexOfParA;
+		parents[1] = indexOfParB;
 	}
 	
 	public int[] getParents()
