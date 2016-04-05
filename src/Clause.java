@@ -65,8 +65,11 @@ public class Clause implements Comparable<Clause>
 			return false;
 		for(int i = 0; i < this.sentence.size(); i++)
 		{
-			if(!input.sentence.contains(this.sentence.get(i)))
-				return false;
+			for(int j = 0; j < input.sentence.size();j++)
+			{
+				if(input.sentence.get(j).compareTo(this.sentence.get(i)) < 0)
+					return false;
+			}
 		}
 		
 		return true;

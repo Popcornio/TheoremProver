@@ -61,7 +61,7 @@ public class Prover
 		return c;
 	}
 	
-	private static ArrayList<Clause> resolveClauses(ArrayList<Clause> validClauses)
+	private static ArrayList<Clause> prover(ArrayList<Clause> validClauses)
 	{
 		PriorityQueue<Clause> queue = new PriorityQueue<Clause>();
 		
@@ -78,9 +78,68 @@ public class Prover
 		
 	}
 	
-	private static resolve(ArrayList<Clause> validClauses)
+	private static ArrayList<Clause> resolve(ArrayList<Clause> validClauses, Clause clause1)
 	{
+		ArrayList<Clause> newClauses = new ArrayList<>();
 		
+		for(int i = 0; i < validClauses.size(); i++)
+		{
+			if(clause1.compareLiterals(validClauses.get(i)))
+			{
+				if(isResolvable(clause1, validClauses.get(i)))
+				{
+					Clause temp = resolveClauses(validClauses, clause1, validClauses.get(i));
+					
+					if(temp != null)
+						newClauses.add(temp);
+				}
+			}
+		}
+		return newClauses;
 	}
-
+	
+	public static boolean isResolvable(Clause clause1, Clause clause2)							//Compare all the literals from clause1 and clause 2 to see if there is a
+	{																					//resolvable set of literals. returns true if it finds one.
+		for(int i = 0; i < clause1.getSentance().size(); i++)
+		{
+			for(int j = 0; j < clause2.getSentance().size(); j++)
+			{
+				if(clause1.getSentance().get(i).compareTo(clause2.getSentance().get(j)) == 1)
+					return true;
+			}
+		}
+		return false;
+	}
+	
+	public static Clause resolveClauses( ArrayList<Clause> validClauses, Clause clause1, Clause clause2)
+	{
+		for(int i = 0; i < clause1.getSentance().size(); i++)
+		{
+			for(int j = 0; j < clause2.getSentance().size(); j++)
+			{
+				if(clause1.getSentance().get(i).compareTo(clause2.getSentance().get(j)) == 1)
+				{
+					int parA = validClauses.indexOf(clause1);
+					int parB = validClauses.indexOf(clause2);
+					
+					ArrayList<Literal> temp = new ArrayList<>();
+					temp = clause1.getSentance();						//get the sentence from clause1 and remove the resolved literal
+					temp.remove(clause1.getSentance().get(i));
+					
+					ArrayList<Literal> newSentance = new ArrayList<>();
+					newSentance.addAll(temp);							//add the sentance to the new sentance for the new clause
+					
+					ArrayList<Literal> temp2 = new ArrayList<>();
+					temp2 = clause2.getSentance();						//get the sentence from clause 2 and remove the resolved literal
+					temp2.remove(clause2.getSentance().get(j));
+					
+					newSentance.addAll(temp2);							//add the sentence to the new sentence that will be placed in the new clause
+					
+					return new Clause(newSentance, parA, parB);
+					
+				}
+			}
+		}
+		return null;
+	}
 }
